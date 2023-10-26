@@ -1,0 +1,23 @@
+name: Ruby RSpec CI
+
+on: [push] # Trigger the workflow on code push
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0 # Change to your Ruby version
+
+    - name: Install dependencies
+      run: bundle install
+
+    - name: Run RSpec tests
+      run: bundle exec rspec
+
