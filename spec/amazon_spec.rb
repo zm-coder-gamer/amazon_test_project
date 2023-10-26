@@ -8,7 +8,10 @@ require_relative 'pages/shopping_cart_page'
 
 RSpec.describe 'Amazon.ca Web Tests' do
   before(:each) do
-    @driver = Selenium::WebDriver.for :chrome
+    options = Selenium::WebDriver::Chrome::Options.new
+    options.add_argument('--headless')
+    options.add_argument('--disable-gpu')
+    @driver = Selenium::WebDriver.for :chrome, options: options
     @home_page = AmazonHomePage.new(@driver)
     @search_results_page = SearchResultsPage.new(@driver)
     @shopping_cart_page = ShoppingCartPage.new(@driver)
